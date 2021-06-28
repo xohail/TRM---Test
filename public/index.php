@@ -6,4 +6,4 @@ use TheRMTest\StringCalculator;
 
 $sc = new StringCalculator();
 
-$sc->intAdd("1,3");
+$sc->intAdd("");

@@ -19,9 +19,12 @@ class StringCalculator
         // For single digit string
         if (count($array) == 1) {
             return (int) $array[0];
+        } elseif (count($array) == 1) {
+            // For two digits string
+            return (int) $array[0]+$array[1];
+        } else {
+            // Sum all digits in the string
+            return (int) array_sum($array);
         }
-
-        // For two digits string
-        return (int) $array[0]+$array[1];
     }
 }
