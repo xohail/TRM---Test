@@ -35,7 +35,7 @@ class MyTest extends TestCase
      */
     public function testSingleDigitString(): void
     {
-        $sum = $this->string_calculator->intAdd("1");
+        $sum = $this->string_calculator->intAdd('1');
         $this->assertSame(1, $sum);
     }
 
@@ -44,7 +44,7 @@ class MyTest extends TestCase
      */
     public function testTwoDigitString(): void
     {
-        $sum = $this->string_calculator->intAdd("1,2");
+        $sum = $this->string_calculator->intAdd('1,2');
         $this->assertEquals(3, $sum);
     }
 
@@ -53,7 +53,7 @@ class MyTest extends TestCase
      */
     public function testUnknownDigitLengthString(): void
     {
-        $sum = $this->string_calculator->intAdd("1,2,3,4,5,6");
+        $sum = $this->string_calculator->intAdd('1,2,3,4,5,6');
         $this->assertEquals(21, $sum);
     }
 
@@ -62,7 +62,7 @@ class MyTest extends TestCase
      */
     public function testHandleNewLineInString(): void
     {
-        $sum = $this->string_calculator->intAdd("1\n2,3");
+        $sum = $this->string_calculator->intAdd('1\n2,3');
         $this->assertEquals(6, $sum);
     }
 
@@ -71,7 +71,7 @@ class MyTest extends TestCase
      */
     public function testHandleNewLineInStartOfString(): void
     {
-        $sum = $this->string_calculator->intAdd("\n1\n2,3");
+        $sum = $this->string_calculator->intAdd('\n1\n2,3');
         $this->assertEquals(6, $sum);
     }
 
@@ -80,7 +80,7 @@ class MyTest extends TestCase
      */
     public function testHandleNewLineInEndOfString(): void
     {
-        $sum = $this->string_calculator->intAdd("1\n2,3\n");
+        $sum = $this->string_calculator->intAdd('1\n2,3\n');
         $this->assertEquals(6, $sum);
     }
 
@@ -89,22 +89,46 @@ class MyTest extends TestCase
      */
     public function testHandleNewLineInStartAndEndOfString(): void
     {
-        $sum = $this->string_calculator->intAdd("\n1\n2,3\n");
+        $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
         $this->assertEquals(6, $sum);
     }
 
+    /**
+     * Test returns if the string has new delimiter
+     */
     public function testIdentifyStringWithNewDelimiter(): void
     {
-
+        $this->assertTrue($this->string_calculator->checkNewDelimiter('//;\n1;2'));
     }
 
+    /**
+     * Test returns if the delimiter successfully replace the existing delimiter
+     */
     public function testReplaceCommaWithNewDelimiter(): void
     {
-
+        $string = '//;\n1;2';
+        if ($this->string_calculator->checkNewDelimiter($string)) {
+            $this->assertSame(substr($string, 2, 1), $this->string_calculator->addNewDelimiter($string));
+        }
     }
 
+    /**
+     * Test returns if the correct string retrieved after finding new delimiter
+     */
+    public function testRetrieveStringAfterNewDelimiter(): void
+    {
+        $string = '//;\n1;2';
+        if ($this->string_calculator->checkNewDelimiter($string)) {
+            $this->assertSame(substr($string, 3), $this->string_calculator->retrieveString($string));
+        }
+    }
+
+    /**
+     * Test returns if the sum is working with the new delimiter
+     */
     public function testSumWithNewDelimiter(): void
     {
-        
+        $sum = $this->string_calculator->intAdd('//;\n1;2');
+        $this->assertEquals(3, $sum);
     }
 }
