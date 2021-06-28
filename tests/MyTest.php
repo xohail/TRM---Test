@@ -184,8 +184,16 @@ class MyTest extends TestCase
 
         $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
         $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
-        $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
+        $sum = $this->string_calculator->intAdd('\n1\n2,-3\n');
 
         $this->assertSame(3, $this->string_calculator->getCalledCount());
+    }
+
+    public function testCheckIfNumberGreaterThan1000IsIgnored(): void
+    {
+        $array = $this->string_calculator->retrieveArray('1;2000;23', ';');
+        $this->assertEquals([1, 2000, 23], $array);
+        $this->assertEquals([1, 23], $this->string_calculator->unsetLargerValues($array));
+        $this->assertEquals(24, $this->string_calculator->intAdd('1,23'));
     }
 }

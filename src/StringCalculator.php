@@ -42,8 +42,7 @@ class StringCalculator
                 $negative_string = $this->GetMultipleNegativeNumbers($array);
                 throw new \Exception("Negatives not allowed " . $negative_string);
             }
-        } catch (\Exception $exception) {
-        }
+        } catch (\Exception $exception) {}
 
         // For single digit string
         if (count($array) == 1) {
