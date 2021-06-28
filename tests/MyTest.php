@@ -6,8 +6,10 @@ use PHPUnit\Framework\TestCase;
 
 class MyTest extends TestCase
 {
-    public function testMyTest(): void
+    protected $string_calculator;
+
+    public function testSetup(): void
     {
-        self::assertTrue(false);
+        $this->string_calculator = new StringCalculator();
     }
 }
