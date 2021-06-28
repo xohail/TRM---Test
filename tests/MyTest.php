@@ -47,4 +47,13 @@ class MyTest extends TestCase
         $sum = $this->string_calculator->intAdd("1,2");
         $this->assertEquals(3, $sum);
     }
+
+    /**
+     * Test returns sum of unknown length of digits passed in the string
+     */
+    public function testUnknownDigitLengthString(): void
+    {
+        $sum = $this->string_calculator->intAdd("1,2,3,4,5,6");
+        $this->assertEquals(21, $sum);
+    }
 }

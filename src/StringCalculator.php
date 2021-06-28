@@ -22,6 +22,6 @@ class StringCalculator
         }
 
         // For two digits string
-        return array_sum($array);
+        return (int) $array[0]+$array[1];
     }
 }
