@@ -107,9 +107,7 @@ class MyTest extends TestCase
     public function testReplaceCommaWithNewDelimiter(): void
     {
         $string = '//;\n1;2';
-        if ($this->string_calculator->checkNewDelimiter($string)) {
-            $this->assertSame(substr($string, 2, 1), $this->string_calculator->addNewDelimiter($string));
-        }
+        $this->assertSame(';', $this->string_calculator->addNewDelimiter($string));
     }
 
     /**
@@ -119,7 +117,7 @@ class MyTest extends TestCase
     {
         $string = '//;\n1;2';
         if ($this->string_calculator->checkNewDelimiter($string)) {
-            $this->assertSame(substr($string, 3), $this->string_calculator->retrieveString($string));
+            $this->assertSame('\n1;2', $this->string_calculator->retrieveString($string));
         }
     }
 
