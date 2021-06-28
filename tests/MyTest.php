@@ -129,4 +129,22 @@ class MyTest extends TestCase
         $sum = $this->string_calculator->intAdd('//;\n1;2');
         $this->assertEquals(3, $sum);
     }
+
+    public function testRetrieveArray(): void
+    {
+        $array = $this->string_calculator->retrieveArray('1;2', ';');
+        $this->assertEquals([1, 2], $array);
+    }
+
+    public function testNegativeValueInString(): void
+    {
+        $this->assertTrue($this->string_calculator->checkNegative([1, -2]));
+    }
+
+    public function testGetNegativeValue(): void
+    {
+        $this->assertSame(-2, $this->string_calculator->getNegativeValue([1, -2]));
+        $this->expectException("Exception");
+        $this->expectExceptionMessage("Negatives not allowed " . -2);
+    }
 }
