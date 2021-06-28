@@ -65,4 +65,31 @@ class MyTest extends TestCase
         $sum = $this->string_calculator->intAdd("1\n2,3");
         $this->assertEquals(6, $sum);
     }
+
+    /**
+     * Test returns sum of digit with \n at start
+     */
+    public function testHandleNewLineInStartOfString(): void
+    {
+        $sum = $this->string_calculator->intAdd("\n1\n2,3");
+        $this->assertEquals(6, $sum);
+    }
+
+    /**
+     * Test returns sum of digit with \n at end
+     */
+    public function testHandleNewLineInEndOfString(): void
+    {
+        $sum = $this->string_calculator->intAdd("1\n2,3\n");
+        $this->assertEquals(6, $sum);
+    }
+
+    /**
+     * Test returns sum of digit with \n at both start and end
+     */
+    public function testHandleNewLineInStartAndEndOfString(): void
+    {
+        $sum = $this->string_calculator->intAdd("\n1\n2,3\n");
+        $this->assertEquals(6, $sum);
+    }
 }
