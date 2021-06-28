@@ -35,6 +35,9 @@ class StringCalculator
 
         // Sanitize & retrieve input
         $array = $this->retrieveArray($string, $delimiter);
+        $array = $this->unsetLargerValues($array);
+        array_values($array);
+//        print_r($array);exit;
 
         // Check negative value
         try {
@@ -147,5 +150,31 @@ class StringCalculator
     public function getCalledCount(): int
     {
         return self::$count;
+    }
+
+    /**
+     * Filter numbers greater than 1000
+     *
+     * @param $array
+     * @return array
+     */
+    public function unsetLargerValues($array): array
+    {
+        $filter = array_filter($array, function($x) {
+            return $x <= 1000;
+        });
+
+        $res = array();
+        foreach ($filter as $key => $value) {
+            if (!empty($value)) {
+                $res[] = $value;
+            }
+        }
+
+        if (!empty($res)) {
+            $filter = $res;
+        }
+
+        return $filter;
     }
 }

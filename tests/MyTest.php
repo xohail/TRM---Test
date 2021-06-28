@@ -189,11 +189,14 @@ class MyTest extends TestCase
         $this->assertSame(3, $this->string_calculator->getCalledCount());
     }
 
+    /**
+     * Check if the number greater than 1000 is ignored
+     *
+     * @throws Exception
+     */
     public function testCheckIfNumberGreaterThan1000IsIgnored(): void
     {
-        $array = $this->string_calculator->retrieveArray('1;2000;23', ';');
-        $this->assertEquals([1, 2000, 23], $array);
-        $this->assertEquals([1, 23], $this->string_calculator->unsetLargerValues($array));
+        $this->assertEquals([1, 23], $this->string_calculator->unsetLargerValues([1, 2000, 23]));
         $this->assertEquals(24, $this->string_calculator->intAdd('1,23'));
     }
 }
