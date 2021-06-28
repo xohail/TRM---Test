@@ -149,8 +149,6 @@ class MyTest extends TestCase
 
     /**
      * Test if the exception is thrown when negative value is added to the string
-     *
-     * @throws Exception
      */
     public function testGetNegativeValue(): void
     {
@@ -161,10 +159,7 @@ class MyTest extends TestCase
 
     /**
      * Test if the exception is thrown when negative values are added to the string
-     *
-     * @throws Exception
      */
-
     public function testGetMultipleNegativeNumbers(): void
     {
         $this->assertSame('-2 -1', $this->string_calculator->GetMultipleNegativeNumbers([-2, -1, 3]));
@@ -176,5 +171,19 @@ class MyTest extends TestCase
         if ($this->getExpectedExceptionMessage() == 'Negatives not allowed -2 -1') {
             $this->assertTrue(true);
         }
+    }
+
+    /**
+     * Test if the number of times the intAdd is called is returned correct
+     *
+     * @throws Exception
+     */
+    public function testAddMethodCount(): void
+    {
+        $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
+        $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
+        $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
+
+        $this->assertSame(3, $this->string_calculator->getCalledCount());
     }
 }
