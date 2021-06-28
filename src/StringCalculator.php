@@ -6,6 +6,8 @@ namespace TheRMTest;
 
 class StringCalculator
 {
+    public static $count=0;
+
     /**
      * Return sum of digits passed in the string
      *
@@ -15,6 +17,8 @@ class StringCalculator
      */
     public function intAdd($string): int
     {
+        self::$count++; // Increment each time the method is called
+
         // Empty string case
         if (empty($string)) {
             return 0;
@@ -34,7 +38,7 @@ class StringCalculator
         if ($this->checkNegative($array)) {
             $negative_string = $this->GetMultipleNegativeNumbers($array);
             throw new \Exception("Negatives not allowed " . $negative_string);
-            exit();
+//            exit();
         }
 
         // For single digit string
@@ -106,11 +110,23 @@ class StringCalculator
         return min($array) < 0;
     }
 
+    /**
+     * Get the negative value from array
+     *
+     * @param $array
+     * @return int
+     */
     public function getNegativeValue($array): int
     {
         return (int) min($array);
     }
 
+    /**
+     * Get string of negative numbers from the array
+     *
+     * @param $array
+     * @return string
+     */
     public function GetMultipleNegativeNumbers($array): string
     {
         $neg = array_filter($array, function($x) {
@@ -118,5 +134,15 @@ class StringCalculator
         });
 
         return implode(" ", $neg);
+    }
+
+    /**
+     * Return count of times the intAdd method is called
+     *
+     * @return int
+     */
+    public function getCalledCount(): int
+    {
+        return self::$count;
     }
 }

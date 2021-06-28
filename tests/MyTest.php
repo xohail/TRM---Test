@@ -180,6 +180,8 @@ class MyTest extends TestCase
      */
     public function testAddMethodCount(): void
     {
+        $this->string_calculator::$count = 0;
+
         $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
         $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
         $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
