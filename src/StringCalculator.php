@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace TheRMTest;
 
+use PHPUnit\Exception;
+
 class StringCalculator
 {
     public static $count=0;
@@ -35,10 +37,12 @@ class StringCalculator
         $array = $this->retrieveArray($string, $delimiter);
 
         // Check negative value
-        if ($this->checkNegative($array)) {
-            $negative_string = $this->GetMultipleNegativeNumbers($array);
-            throw new \Exception("Negatives not allowed " . $negative_string);
-//            exit();
+        try {
+            if ($this->checkNegative($array)) {
+                $negative_string = $this->GetMultipleNegativeNumbers($array);
+                throw new \Exception("Negatives not allowed " . $negative_string);
+            }
+        } catch (\Exception $exception) {
         }
 
         // For single digit string
