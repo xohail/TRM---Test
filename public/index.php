@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use TheRMTest\App;
+use TheRMTest\StringCalculator;
 
-$app = new App();
+$sc = new StringCalculator();
 
-$app->sayHello();
+$sc->intAdd();
