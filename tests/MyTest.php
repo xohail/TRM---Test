@@ -156,6 +156,19 @@ class MyTest extends TestCase
     {
         $this->assertSame(-2, $this->string_calculator->getNegativeValue([1, -2]));
         $this->expectException("Exception");
-        $this->expectExceptionMessage("Negatives not allowed " . -2);
+        $this->expectExceptionMessage("Negatives not allowed -2");
+    }
+
+    /**
+     * Test if the exception is thrown when negative values are added to the string
+     *
+     * @throws Exception
+     */
+
+    public function testGetMultipleNegativeNumbers(): void
+    {
+        $this->assertSame([-2, -1], $this->string_calculator->GetMultipleNegativeNumbers([-2, -1, 3]));
+        $this->expectException("Exception");
+        $this->expectExceptionMessage("Negatives not allowed -2 -1");
     }
 }
