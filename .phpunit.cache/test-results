@@ -1,1 +1,1 @@
-{"version":1,"defects":{"MyTest::testMyTest":3,"MyTest::testSetup":5},"times":{"MyTest::testMyTest":0.088,"MyTest::testSetup":0.023}}
+{"version":1,"defects":{"MyTest::testMyTest":3,"MyTest::testSetup":4,"MyTest::testEmptyString":3,"MyTest::testSingleDigitString":3,"MyTest::testTwoDigitString":3},"times":{"MyTest::testMyTest":0.088,"MyTest::testSetup":0.021,"MyTest::testEmptyString":0.002,"MyTest::testSingleDigitString":0,"MyTest::testTwoDigitString":0.009}}
