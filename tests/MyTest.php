@@ -36,7 +36,7 @@ class MyTest extends TestCase
     public function testSingleDigitString(): void
     {
         $sum = $this->string_calculator->intAdd("1");
-        $this->assertEquals(1, $sum);
+        $this->assertSame(1, $sum);
     }
 
     /**
