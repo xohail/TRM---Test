@@ -92,4 +92,19 @@ class MyTest extends TestCase
         $sum = $this->string_calculator->intAdd("\n1\n2,3\n");
         $this->assertEquals(6, $sum);
     }
+
+    public function testIdentifyStringWithNewDelimiter(): void
+    {
+
+    }
+
+    public function testReplaceCommaWithNewDelimiter(): void
+    {
+
+    }
+
+    public function testSumWithNewDelimiter(): void
+    {
+        
+    }
 }
