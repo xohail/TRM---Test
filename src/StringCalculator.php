@@ -8,6 +8,9 @@ class StringCalculator
 {
     public function intAdd($string): int
     {
+        // Sanitize input
+        $string = str_replace("\n", ",", $string);
+
         // Empty string case
         if (empty($string)) {
             return 0;
