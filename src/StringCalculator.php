@@ -8,16 +8,15 @@ class StringCalculator
 {
     public function intAdd($string): int
     {
-        // Sanitize input
-        $string = str_replace("\n", ",", $string);
 
         // Empty string case
         if (empty($string)) {
             return 0;
         }
 
-        // Explode string to array
-        $array = explode(",", $string);
+        // Sanitize input
+        $string = str_replace("\n", ",", $string);
+        $array = explode(",", $string); // Explode string to array
 
         // For single digit string
         if (count($array) == 1) {
