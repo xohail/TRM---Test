@@ -167,8 +167,14 @@ class MyTest extends TestCase
 
     public function testGetMultipleNegativeNumbers(): void
     {
-        $this->assertSame([-2, -1], $this->string_calculator->GetMultipleNegativeNumbers([-2, -1, 3]));
+        $this->assertSame('-2 -1', $this->string_calculator->GetMultipleNegativeNumbers([-2, -1, 3]));
         $this->expectException("Exception");
+        if ($this->getExpectedException() == 'Exception') {
+            $this->assertTrue(true);
+        }
         $this->expectExceptionMessage("Negatives not allowed -2 -1");
+        if ($this->getExpectedExceptionMessage() == 'Negatives not allowed -2 -1') {
+            $this->assertTrue(true);
+        }
     }
 }

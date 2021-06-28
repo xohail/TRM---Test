@@ -32,7 +32,9 @@ class StringCalculator
 
         // Check negative value
         if ($this->checkNegative($array)) {
-            $this->getNegativeValue($array);
+            $negative_string = $this->GetMultipleNegativeNumbers($array);
+            throw new \Exception("Negatives not allowed " . $negative_string);
+            exit();
         }
 
         // For single digit string
@@ -104,13 +106,17 @@ class StringCalculator
         return min($array) < 0;
     }
 
-    /**
-     * @throws \Exception
-     */
     public function getNegativeValue($array): int
     {
-        $negative_value = (int) min($array);
-        throw new \Exception("Negatives not allowed " . $negative_value);
-        exit();
+        return (int) min($array);
+    }
+
+    public function GetMultipleNegativeNumbers($array): string
+    {
+        $neg = array_filter($array, function($x) {
+            return $x < 0;
+        });
+
+        return implode(" ", $neg);
     }
 }
