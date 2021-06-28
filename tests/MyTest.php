@@ -130,17 +130,28 @@ class MyTest extends TestCase
         $this->assertEquals(3, $sum);
     }
 
+    /**
+     * Test returns if the correct is retrieved from the string
+     */
     public function testRetrieveArray(): void
     {
         $array = $this->string_calculator->retrieveArray('1;2', ';');
         $this->assertEquals([1, 2], $array);
     }
 
+    /**
+     * Test if there is a negative value in the string
+     */
     public function testNegativeValueInString(): void
     {
         $this->assertTrue($this->string_calculator->checkNegative([1, -2]));
     }
 
+    /**
+     * Test if the exception is thrown when negative value is added to the string
+     *
+     * @throws Exception
+     */
     public function testGetNegativeValue(): void
     {
         $this->assertSame(-2, $this->string_calculator->getNegativeValue([1, -2]));

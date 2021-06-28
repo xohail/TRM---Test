@@ -11,6 +11,7 @@ class StringCalculator
      *
      * @param $string
      * @return int
+     * @throws \Exception
      */
     public function intAdd($string): int
     {
@@ -26,9 +27,13 @@ class StringCalculator
             $string = $this->retrieveString($string);
         }
 
-        // Sanitize input
-        $string = str_replace('\n', $delimiter, $string);
-        $array = explode($delimiter, $string); // Explode string to array
+        // Sanitize & retrieve input
+        $array = $this->retrieveArray($string, $delimiter);
+
+        // Check negative value
+        if ($this->checkNegative($array)) {
+            $this->getNegativeValue($array);
+        }
 
         // For single digit string
         if (count($array) == 1) {
@@ -73,5 +78,39 @@ class StringCalculator
     public function retrieveString($string): string
     {
         return substr($string, 3);
+    }
+
+    /**
+     * Retrieve array from the string
+     *
+     * @param $string
+     * @param $delimiter
+     * @return array
+     */
+    public function retrieveArray($string, $delimiter): array
+    {
+        $string = str_replace('\n', $delimiter, $string);
+        return explode($delimiter, $string); // Explode string to array
+    }
+
+    /**
+     * Check if array has a negative value
+     *
+     * @param $array
+     * @return bool
+     */
+    public function checkNegative($array): bool
+    {
+        return min($array) < 0;
+    }
+
+    /**
+     * @throws \Exception
+     */
+    public function getNegativeValue($array): int
+    {
+        $negative_value = (int) min($array);
+        throw new \Exception("Negatives not allowed " . $negative_value);
+        exit();
     }
 }
