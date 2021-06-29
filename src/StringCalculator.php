@@ -33,7 +33,7 @@ class StringCalculator
             if (!$this->CheckAllCharactersInTheStringAreSame($delimiter)) {
                 $delimiter_array = $this->RetrieveUniqueCharactersFromString($delimiter);
                 $string = $this->ConvertUniqueDelimitersIntoUnifiedDelimiterAndExtractString($string, $delimiter_array);
-                $delimiter = ',';
+                $delimiter = ','; // Since we are using this as default for the multiple delimiters
             }
             $string = $this->retrieveString($string);
         }
@@ -44,12 +44,10 @@ class StringCalculator
         array_values($array);
 
         // Check negative value
-        try {
-            if ($this->checkNegative($array)) {
-                $negative_string = $this->GetMultipleNegativeNumbers($array);
-                throw new \Exception("Negatives not allowed " . $negative_string);
-            }
-        } catch (\Exception $exception) {}
+        if ($this->checkNegative($array)) {
+            $negative_string = $this->GetMultipleNegativeNumbers($array);
+            throw new \Exception("Negatives not allowed " . $negative_string);
+        }
 
         // For single digit string
         if (count($array) == 1) {

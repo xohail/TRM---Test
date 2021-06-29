@@ -5,7 +5,7 @@ use PHPUnit\Framework\TestCase;
 
 class MyTest extends TestCase
 {
-    protected $string_calculator;
+    protected StringCalculator $string_calculator;
 
     public function __construct(?string $name = null, array $data = [], $dataName = '')
     {
@@ -182,9 +182,13 @@ class MyTest extends TestCase
     {
         $this->string_calculator::$count = 0;
 
-        $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
-        $sum = $this->string_calculator->intAdd('\n1\n2,3\n');
-        $sum = $this->string_calculator->intAdd('\n1\n2,-3\n');
+        $this->string_calculator->intAdd('\n1\n2,3\n');
+        $this->string_calculator->intAdd('\n1\n2,3\n');
+        try {
+            $this->string_calculator->intAdd('\n1\n2,-3\n');
+        } catch (Exception $exception) {
+            $exception->getMessage();
+        }
 
         $this->assertSame(3, $this->string_calculator->getCalledCount());
     }
