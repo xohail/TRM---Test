@@ -37,7 +37,6 @@ class StringCalculator
         $array = $this->retrieveArray($string, $delimiter);
         $array = $this->unsetLargerValues($array);
         array_values($array);
-//        print_r($array);exit;
 
         // Check negative value
         try {
@@ -78,7 +77,12 @@ class StringCalculator
      */
     public function addNewDelimiter($string): string
     {
-        return substr($string, 2, 1);
+        return substr($string, 2, $this->getNewLinePosition($string) - 2);
+    }
+
+    public function getNewLinePosition($string): int
+    {
+        return strpos($string, '\n');
     }
 
     /**
@@ -89,7 +93,7 @@ class StringCalculator
      */
     public function retrieveString($string): string
     {
-        return substr($string, 3);
+        return substr($string, $this->getNewLinePosition($string) + 2);
     }
 
     /**

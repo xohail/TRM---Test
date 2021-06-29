@@ -117,7 +117,7 @@ class MyTest extends TestCase
     {
         $string = '//;\n1;2';
         if ($this->string_calculator->checkNewDelimiter($string)) {
-            $this->assertSame('\n1;2', $this->string_calculator->retrieveString($string));
+            $this->assertSame('1;2', $this->string_calculator->retrieveString($string));
         }
     }
 
@@ -198,5 +198,13 @@ class MyTest extends TestCase
     {
         $this->assertEquals([1, 23], $this->string_calculator->unsetLargerValues([1, 2000, 23]));
         $this->assertEquals(24, $this->string_calculator->intAdd('1,23'));
+    }
+
+    /**
+     * Check if correct position of new line is retrieved
+     */
+    public function testCheckFirstNewLineOccurrencePosition(): void
+    {
+        $this->assertSame(5, $this->string_calculator->getNewLinePosition('//***\n1***2***3'));
     }
 }
