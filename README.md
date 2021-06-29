@@ -14,4 +14,5 @@ Repository for the TRM technical test
 * $`docker-compose up -d fpm nginx`
   * Website should be up on http://localhost:8080
   * If not please configure to the available port in **docker-compose.yml** for nginx
-* $`dcr php-unit` // for tests  
+* $`dcr php-unit --debug` // for tests
+* Update `index.php` to check specific case and Output will be printed on http://localhost:8080
