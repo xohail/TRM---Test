@@ -6,40 +6,40 @@ use TheRMTest\StringCalculator;
 
 $sc = new StringCalculator();
 
-print $sc->intAdd(''); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('1'); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('1,2'); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('1,2,3,4,5,6'); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('1\n2,3'); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('//:\n1:2'); // Add input here to check explicit input result
-print "<br>";
+echo "Empty case: " .  $sc->intAdd(''); // Add input here to check explicit input result
+echo "<br>";
+echo "Single digit case: " .  $sc->intAdd('1'); // Add input here to check explicit input result
+echo "<br>";
+echo "Two digits case: " .  $sc->intAdd('1,2'); // Add input here to check explicit input result
+echo "<br>";
+echo "Multiple numbers case: " .  $sc->intAdd('1,2,3,4,5,6'); // Add input here to check explicit input result
+echo "<br>";
+echo "New line case: " .  $sc->intAdd('1\n2,3'); // Add input here to check explicit input result
+echo "<br>";
+echo "New delimiter case: " .  $sc->intAdd('//:\n1:2'); // Add input here to check explicit input result
+echo "<br>";
 
 try {
     $sc->intAdd('//:\n1:-2'); // Add input here to check explicit input result
 } catch (Exception $exception) {
-    print $exception->getMessage();
+    echo "Single negative digit case: " .  $exception->getMessage();
 }
-print "<br>";
+echo "<br>";
 try {
     $sc->intAdd('//:\n1:-2:-3'); // Add input here to check explicit input result
 } catch (Exception $exception) {
-    print $exception->getMessage();
+    echo "Multiple negative digits case: " .  $exception->getMessage();
 }
-print "<br>";
-print $sc->intAdd('//:\n1:2000'); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('//***\n1***2***3'); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('//*%\n1*2%3'); // Add input here to check explicit input result
-print "<br>";
-print $sc->intAdd('//**%%\n1**2%%3'); // Add input here to check explicit input result
-print "<br>";
-print "<br>";
+echo "<br>";
+echo "Number greate than 1000 case: " .  $sc->intAdd('//:\n1:2000'); // Add input here to check explicit input result
+echo "<br>";
+echo "Compound delimiter case: " .  $sc->intAdd('//***\n1***2***3'); // Add input here to check explicit input result
+echo "<br>";
+echo "Multiple delimiters case: " .  $sc->intAdd('//*%\n1*2%3'); // Add input here to check explicit input result
+echo "<br>";
+echo "Compound multiple delimiters case: " .  $sc->intAdd('//**%%\n1**2%%3'); // Add input here to check explicit input result
+echo "<br>";
+echo "<br>";
 
 
 
