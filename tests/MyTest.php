@@ -207,4 +207,24 @@ class MyTest extends TestCase
     {
         $this->assertSame(5, $this->string_calculator->getNewLinePosition('//***\n1***2***3'));
     }
+
+    public function testCheckAllCharactersInTheStringAreSame(): void
+    {
+        // Check if the delimiter is a compound one or a single or multiple unique ones
+    }
+
+    public function testCheckRetrieveUniqueCharactersFromString(): void
+    {
+        // Get unique characters from a string
+    }
+
+    public function testCheckUniqueDelimitersAreConvertedIntoUnifiedDelimiterForEase(): void
+    {
+        // Check if the unique delimiter are correctly converted into unified delimiter
+    }
+
+    public function testCheckIfTheStringIsCorrectlyConvertedWithUnifiedDelimeter(): void
+    {
+        // Check if the correct string is formulated after conversion
+    }
 }
