@@ -208,23 +208,34 @@ class MyTest extends TestCase
         $this->assertSame(5, $this->string_calculator->getNewLinePosition('//***\n1***2***3'));
     }
 
+    /**
+     * Check if the delimiter is a compound one or a single or multiple unique ones
+     */
     public function testCheckAllCharactersInTheStringAreSame(): void
     {
-        // Check if the delimiter is a compound one or a single or multiple unique ones
+        $this->assertTrue($this->string_calculator->CheckAllCharactersInTheStringAreSame('****'));
+        $this->assertFalse($this->string_calculator->CheckAllCharactersInTheStringAreSame('%*%*'));
     }
 
+    /**
+     * Get unique characters from a string
+     */
     public function testCheckRetrieveUniqueCharactersFromString(): void
     {
-        // Get unique characters from a string
+        $this->assertSame('%*', $this->string_calculator->RetrieveUniqueCharactersFromString('%*%*'));
     }
 
+    /**
+     * Check if the unique delimiter are correctly converted into unified delimiter
+     */
     public function testCheckUniqueDelimitersAreConvertedIntoUnifiedDelimiterForEase(): void
     {
-        // Check if the unique delimiter are correctly converted into unified delimiter
+        $this->assertSame(',', $this->string_calculator->ConvertUniqueDelimitersIntoUnifiedDelimiter('%*'));
     }
 
-    public function testCheckIfTheStringIsCorrectlyConvertedWithUnifiedDelimeter(): void
+    public function testCheckIfTheStringIsCorrectlyConvertedWithUnifiedDelimiter(): void
     {
         // Check if the correct string is formulated after conversion
+        $this->assertSame('1,2,2,', $this->string_calculator->ConvertUniqueDelimitersIntoUnifiedDelimiter('1#2$2&'));
     }
 }
