@@ -6,6 +6,6 @@ use TheRMTest\StringCalculator;
 
 $sc = new StringCalculator();
 
-print $sc->intAdd('//***\n1***2***3');
+print $sc->intAdd('//**##\n1**2##3');
 print "<br>";
 echo $sc->getCalledCount();

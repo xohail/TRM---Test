@@ -30,6 +30,11 @@ class StringCalculator
         $delimiter = ',';
         if ($this->checkNewDelimiter($string)) {
             $delimiter = $this->addNewDelimiter($string);
+            if (!$this->CheckAllCharactersInTheStringAreSame($delimiter)) {
+                $delimiter_array = $this->RetrieveUniqueCharactersFromString($delimiter);
+                $string = $this->ConvertUniqueDelimitersIntoUnifiedDelimiterAndExtractString($string, $delimiter_array);
+                $delimiter = ',';
+            }
             $string = $this->retrieveString($string);
         }
 
@@ -80,6 +85,50 @@ class StringCalculator
         return substr($string, 2, $this->getNewLinePosition($string) - 2);
     }
 
+    /**
+     * Checks if the extracted delimiter is comprised of same characters or unique
+     *
+     * @param $string
+     * @return bool
+     */
+    public function CheckAllCharactersInTheStringAreSame($string): bool
+    {
+        return count(array_count_values(str_split($string))) == 1;
+    }
+
+    /**
+     * Get array of unique delimiters from delimiter string
+     *
+     * @param $string
+     * @return array
+     */
+    public function RetrieveUniqueCharactersFromString($string): array
+    {
+        return array_unique(str_split($string));
+    }
+
+    /**
+     * Get the string to perform addition after replace comma with new delimiters
+     *
+     * @param $string
+     * @param $delimiter_array
+     * @return string
+     */
+    public function ConvertUniqueDelimitersIntoUnifiedDelimiterAndExtractString($string, $delimiter_array): string
+    {
+        foreach ($delimiter_array as $delimiter) {
+            $string = str_replace($delimiter, ',', $string);
+        }
+
+        return $string;
+    }
+
+    /**
+     * Get position in the string of the new line '\n'
+     *
+     * @param $string
+     * @return int
+     */
     public function getNewLinePosition($string): int
     {
         return strpos($string, '\n');

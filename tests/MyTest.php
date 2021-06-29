@@ -222,20 +222,15 @@ class MyTest extends TestCase
      */
     public function testCheckRetrieveUniqueCharactersFromString(): void
     {
-        $this->assertSame('%*', $this->string_calculator->RetrieveUniqueCharactersFromString('%*%*'));
+        $this->assertSame(['%', '*'], $this->string_calculator->RetrieveUniqueCharactersFromString('%*%*'));
     }
 
     /**
-     * Check if the unique delimiter are correctly converted into unified delimiter
+     * Check if the converted string with multiple delimiters is correct
      */
-    public function testCheckUniqueDelimitersAreConvertedIntoUnifiedDelimiterForEase(): void
-    {
-        $this->assertSame(',', $this->string_calculator->ConvertUniqueDelimitersIntoUnifiedDelimiter('%*'));
-    }
-
     public function testCheckIfTheStringIsCorrectlyConvertedWithUnifiedDelimiter(): void
     {
         // Check if the correct string is formulated after conversion
-        $this->assertSame('1,2,2,', $this->string_calculator->ConvertUniqueDelimitersIntoUnifiedDelimiter('1#2$2&'));
+        $this->assertSame('1,2,2,', $this->string_calculator->ConvertUniqueDelimitersIntoUnifiedDelimiterAndExtractString('1#2$2#', ['#', '$']));
     }
 }
