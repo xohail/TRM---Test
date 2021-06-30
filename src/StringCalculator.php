@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace TheRMTest;
 
-use PHPUnit\Exception;
-
 class StringCalculator
 {
     public static int $count = 0;
