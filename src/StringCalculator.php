@@ -8,7 +8,9 @@ use PHPUnit\Exception;
 
 class StringCalculator
 {
-    public static $count=0;
+    public static int $count = 0;
+
+    public const DELIMITER = ',';
 
     /**
      * Return sum of digits passed in the string
@@ -27,13 +29,14 @@ class StringCalculator
         }
 
         // If new delimiter is added to the string; retrieve and process
-        $delimiter = ',';
+        $delimiter = self::DELIMITER;
         if ($this->checkNewDelimiter($string)) {
             $delimiter = $this->addNewDelimiter($string);
             if (!$this->CheckAllCharactersInTheStringAreSame($delimiter)) {
+                $delimiter = self::DELIMITER; // Since we are using this as default for the multiple delimiters
+
                 $delimiter_array = $this->RetrieveUniqueCharactersFromString($delimiter);
                 $string = $this->ConvertUniqueDelimitersIntoUnifiedDelimiterAndExtractString($string, $delimiter_array);
-                $delimiter = ','; // Since we are using this as default for the multiple delimiters
             }
             $string = $this->retrieveString($string);
         }

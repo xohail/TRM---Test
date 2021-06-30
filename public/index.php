@@ -31,7 +31,7 @@ try {
     echo "Multiple negative digits case: " .  $exception->getMessage();
 }
 echo "<br>";
-echo "Number greate than 1000 case: " .  $sc->intAdd('//:\n1:2000'); // Add input here to check explicit input result
+echo "Number greater than 1000 case: " .  $sc->intAdd('//:\n1:2000:4'); // Add input here to check explicit input result
 echo "<br>";
 echo "Compound delimiter case: " .  $sc->intAdd('//***\n1***2***3'); // Add input here to check explicit input result
 echo "<br>";
