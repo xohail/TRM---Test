@@ -42,7 +42,6 @@ class StringCalculator
         // Sanitize & retrieve input
         $array = $this->retrieveArray($string, $delimiter);
         $array = $this->unsetLargerValues($array);
-        array_values($array);
 
         // Check negative value
         if ($this->checkNegative($array)) {
