@@ -1,42 +1,44 @@
 # docker-compose.yml
 version: '3'
 services:
-    # Composer
-    composer:
-      image: composer:1.9.3
-      environment:
-        - COMPOSER_CACHE_DIR=/app/var/cache/composer
-      volumes:
-        - .:/app
-      restart: never
-    # PHP
-    php:
-      image: php:7.4-cli
-      volumes:
-        - .:/app
-      working_dir: /app
-      restart: never
-    # PHP-Unit
-    php-unit:
-      image: php:7.4-cli
-      volumes:
-        - .:/app
-      working_dir: /app
-      restart: never
-      entrypoint: vendor/bin/phpunit
-    fpm:
-      image: php:7.4-fpm
-      restart: always
-      volumes:
-        - .:/app
-    nginx:
-      image: nginx:1.17.8-alpine
-      ports:
-        - 8080:80
-      volumes:
-        - .:/app
-        - ./var/log/nginx:/var/log/nginx
-        - .conf/nginx/site.conf:/etc/nginx/conf.d/default.conf
+  # Composer
+  composer:
+    image: composer:1.9.3
+    environment:
+      - COMPOSER_CACHE_DIR=/app/var/cache/composer
+    volumes:
+      - .:/app
+    restart: always
+  # PHP
+  php:
+    image: php:7.4-cli
+    volumes:
+      - .:/app
+    working_dir: /app
+    restart: always
+  # PHP-Unit
+  php-unit:
+    image: php:7.4-cli
+    volumes:
+      - .:/app
+    working_dir: /app
+    restart: always
+    entrypoint: vendor/bin/phpunit
+  # FPM
+  fpm:
+    image: php:7.4-fpm
+    restart: always
+    volumes:
+      - .:/app
+  # NGINX
+  nginx:
+    image: nginx:1.17.8-alpine
+    ports:
+      - 8080:80
+    volumes:
+      - .:/app
+      - ./var/log/nginx:/var/log/nginx
+      - .conf/nginx/site.conf:/etc/nginx/conf.d/default.conf
 
 
 
